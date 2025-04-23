@@ -5,13 +5,13 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from simpleorm.db import Connector
 
-config = {
-    "engine": "postgres",
-    "user": "postgres",
-    "password": "123456",
-    "host": "localhost",
-    "database": "postgres"
-}
+# config = {
+#     "engine": "postgres",
+#     "user": "postgres",
+#     "password": "123456",
+#     "host": "localhost",
+#     "database": "postgres"
+# }
 
 config2 = {
     "engine": "mysql",
@@ -22,7 +22,7 @@ config2 = {
 }
 
 # Connect to Postgres
-db1 = Connector(config).connect()
+# db1 = Connector(config).connect()
 
 # Connect to MySQL
 db2 = Connector(config2).connect()
