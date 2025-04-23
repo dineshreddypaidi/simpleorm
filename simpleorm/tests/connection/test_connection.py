@@ -21,4 +21,11 @@ def test_postgresql_connection():
 
     db = Connector(config).connect()
     assert db is not None, "Failed to connect to PostgreSQL database"
-    assert db.show_tables() is not None, "Failed to retrieve tables from PostgreSQL database"       
+    assert db.show_tables() is not None, "Failed to retrieve tables from PostgreSQL database"
+    
+def test_show_tables():
+    with open("./simpleorm/tests/config/connection_postgres_config.json", "r") as f:
+        config = json.load(f)
+
+    db = Connector(config).connect()
+    assert type(db.show_tables()) is list and len(db.show_tables()) >= 0

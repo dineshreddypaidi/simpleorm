@@ -1,2 +1,5 @@
 # simpleorm
-an simple ORM in python
+
+### here is the TODO
+
+- [ TODO ](./TODO.md)
