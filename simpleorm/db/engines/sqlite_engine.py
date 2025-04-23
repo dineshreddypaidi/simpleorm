@@ -14,3 +14,12 @@ class SqliteConnector(BaseConnector):
         tables = [row[0] for row in cursor.fetchall()]
         
         return tables
+    
+    def drop_table(self, table_name):
+        try:
+            with self.get_cursor() as cursor:
+                cursor.execute(f"DROP TABLE IF EXISTS {table_name};")
+            self.commit()
+            return True
+        except Exception as e:
+            raise RuntimeError(f"Failed to drop table {table_name}: {e}")

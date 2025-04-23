@@ -24,3 +24,11 @@ class PostgresConnector(BaseConnector):
         
         return tables
     
+    def drop_table(self, table_name):
+        try:
+            with self.get_cursor() as cursor:
+                cursor.execute(f"DROP TABLE IF EXISTS {table_name} CASCADE;")
+            self.commit()
+            return True
+        except Exception as e:
+            raise RuntimeError(f"Failed to drop table {table_name}: {e}")

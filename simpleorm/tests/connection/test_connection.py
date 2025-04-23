@@ -6,26 +6,30 @@ import pytest
 import json
 from simpleorm.db import Connector
 
-def test_mysql_connection():
+@pytest.fixture
+def postgres_db():
+    with open("./simpleorm/tests/config/connection_postgres_config.json", "r") as f:
+        config = json.load(f)
+    return Connector(config).connect()
 
+@pytest.fixture
+def mysql_db():
     with open("./simpleorm/tests/config/connection_mysql_config.json", "r") as f:
         config = json.load(f)
+    return Connector(config).connect()
 
-    db = Connector(config).connect()
-    assert db is not None, "Failed to connect to MySQL database"
-    assert db.show_tables() is not None, "Failed to retrieve tables from MySQL database"
+def test_mysql_connection(mysql_db):
+    assert mysql_db is not None, "Failed to connect to MySQL database"
 
-def test_postgresql_connection():
-    with open("./simpleorm/tests/config/connection_postgres_config.json", "r") as f:
-        config = json.load(f)
+def test_postgresql_connection(postgres_db):
+    assert postgres_db is not None, "Failed to connect to PostgreSQL database"
 
-    db = Connector(config).connect()
-    assert db is not None, "Failed to connect to PostgreSQL database"
-    assert db.show_tables() is not None, "Failed to retrieve tables from PostgreSQL database"
-    
-def test_show_tables():
-    with open("./simpleorm/tests/config/connection_postgres_config.json", "r") as f:
-        config = json.load(f)
+def test_show_tables(postgres_db, mysql_db):
+    assert isinstance(postgres_db.show_tables(), list)
+    assert isinstance(mysql_db.show_tables(), list)
 
-    db = Connector(config).connect()
-    assert type(db.show_tables()) is list and len(db.show_tables()) >= 0
+
+
+def test_delete_table(postgres_db, mysql_db):
+    assert postgres_db.drop_table(table_name="users")
+    assert mysql_db.drop_table(table_name="users")
