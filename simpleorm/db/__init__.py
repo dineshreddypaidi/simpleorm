@@ -1,0 +1,1 @@
+from simpleorm.db.connection import Connector
