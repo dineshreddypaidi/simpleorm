@@ -21,7 +21,7 @@ db1 = Connector(postgres_db_config()).connect()
 db2 = Connector(mysql_db_config()).connect()
 
 
-# SHOW TABLES;
-print("Postgres Tables:", db1.show_tables())
-
-print("Mysql Tables:", db2.show_tables())
+table = {
+    "id" : int,
+    "name" : str,
+}
