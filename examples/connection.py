@@ -4,28 +4,18 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from simpleorm.db import Connector
+from simpleorm.config import load_json_config
 
-config = {
-    "engine": "postgres",
-    "user": "postgres",
-    "password": "123456",
-    "host": "localhost",
-    "database": "postgres"
-}
+mysql_config = load_json_config("../config/connection_mysql_config.json")
+postgres_config = load_json_config("../config/connection_postgres_config.json")
 
-config2 = {
-    "engine": "mysql",
-    "user": "root",
-    "password": "root",
-    "host": "localhost",
-    "database": "world"
-}
 
-# Connect to Postgres
-# db1 = Connector(config).connect()
+db1 = Connector(postgres_config).connect()
 
-# Connect to MySQL
-db2 = Connector(config2).connect()
+db2 = Connector(mysql_config).connect()
 
-# Now you can safely call show_tables()
-print("Tables:", db2.show_tables())
+
+# SHOW TABLES;
+print("Postgres Tables:", db1.show_tables())
+
+print("Mysql Tables:", db2.show_tables())
