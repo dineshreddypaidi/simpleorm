@@ -6,6 +6,7 @@ class IntegerField(Field):
         
     def validate(self):
         pass
+    
 class StringField(Field):
     def __init__(self, max_length=255, **kwargs):
         sql_type = f"VARCHAR({max_length})"
@@ -13,7 +14,7 @@ class StringField(Field):
         super().__init__(str, sql_type, **kwargs)
 
     def validate(self):
-        self._validate_flags_for_type(allow_pk=False, allow_unique=False, allow_fk=False)
+        self._validate_flags_for_type(allow_pk=False, allow_unique=True, allow_fk=False)
         
 class FloatField(Field):
     def __init__(self,**kwargs):
@@ -22,6 +23,7 @@ class FloatField(Field):
     def validate(self):
         if self.auto_increment:
             raise ValueError("float cannot be primary key and can't auto_increment")
+        
 class TextField(Field):
     def __init__(self,**kwargs):
         super().__init__(str, "TEXT", **kwargs)

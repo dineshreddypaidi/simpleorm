@@ -5,16 +5,16 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from simpleorm.fields import *
         
-print(IntegerField(primary_key=True).schema("id"))
+print(IntegerField(primary_key=True).to_sql("id"))
 
-print(StringField().schema("id"))
+print(StringField().to_sql("id"))
 
-print(FloatField(default=10.2).schema("id"))
+print(FloatField(default=10.2).to_sql("id"))
 
-print(TextField().schema("id"))
+print(TextField().to_sql("id"))
 
-print(BooleanField().schema("id"))
+print(BooleanField().to_sql("id"))
 
-print(DateField(auto=True).schema("id"))
+print(DateField(auto=True).to_sql("id"))
 
-print(DateTimeField(auto=True).schema("id"))
+print(DateTimeField(auto=True).to_sql("id"))

@@ -72,28 +72,28 @@ class Field(ABC):
     def to_sql(self, column_name):
         self.validate()
         
-        parts = [column_name, self.sql_type]
-
-        if not self.null:
-            parts.append("NOT NULL")
+        parts = {
+            "column_name" : column_name,
+            "sql_type" :  self.sql_type,
+        }
+        
+        if self.null:
+            parts["not_null"] = self.null
         if self.primary_key:
-            parts.append("PRIMARY KEY")
+            parts["is_primary"] = self.primary_key
         if self.unique:
-            parts.append("UNIQUE")
+            parts["is_unique"] = self.unique
         if self.foreign_key:
             ref_table, ref_col = self.foreign_key.split("(")
             ref_col = ref_col.rstrip(")")
-            parts.append(f"REFERENCES {ref_table}({ref_col})")
+            parts["foreign_key"] = f"REFERENCES {ref_table}({ref_col})"
         if self.auto_increment:
-            parts.append("AUTOINCREMENT")
+            parts["auto_increment"] = ("AUTOINCREMENT")
         if self.default is not None:
             default_val = f"'{self.default}'" if isinstance(self.default, str) else str(self.default)
-            parts.append(f"DEFAULT {default_val}")
+            parts["default"] = (f"DEFAULT {default_val}")
             
         if hasattr(self, "auto") and self.auto:
-            parts.append("DEFAULT CURRENT_TIMESTAMP")    
+            parts["is_auto"] = self.auto
     
-        return " ".join(parts)
-
-    def schema(self,column_name):
-        return self.to_sql(column_name)
+        return parts

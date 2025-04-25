@@ -25,11 +25,18 @@ class BaseConnector(ABC):
     def show_tables(self):
         pass
 
-    # @abstractmethod
-    # def create_table(self):
-    #     pass
+    @abstractmethod
+    def create_table(self):
+        pass
 
     @abstractmethod
     def drop_table(self):
         pass
     
+    @abstractmethod
+    def truncate_table(self):
+        pass
+    
+    # @abstractmethod
+    # def use_table(self):
+    #     pass

@@ -38,10 +38,3 @@ def test_field_abstract_instantiation():
     with pytest.raises(TypeError):
         Field(int, "INTEGER")
 
-def test_to_sql_():
-    field = IntegerField(primary_key=True, null=False)
-    assert field.schema("id") == "id INTEGER NOT NULL PRIMARY KEY UNIQUE AUTOINCREMENT"
-
-def test_sql_2():
-    field = TextField()
-    assert field.schema("id") == "id TEXT NOT NULL"
