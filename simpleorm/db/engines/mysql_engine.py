@@ -2,6 +2,7 @@ import mysql.connector
 from simpleorm.db.base import BaseConnector
 
 class MySQLConnector(BaseConnector):
+    
     def get_connection(self):
         self.conn = mysql.connector.connect(
             host = self.config.get("host", "localhost"),
@@ -71,4 +72,4 @@ class MySQLConnector(BaseConnector):
         except Exception as e:
             raise RuntimeError(f"Failed to truncate table {table_name}: {e}")
         
-             
+    

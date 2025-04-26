@@ -49,6 +49,7 @@ class SqliteConnector(BaseConnector):
             cursor.execute(query)
             self.commit()
             return f"Table created successfully in database"
+        except Exception as e:
             raise RuntimeError(f"cannot create table {table_name}: {e}")
         
     def drop_table(self, table_name):

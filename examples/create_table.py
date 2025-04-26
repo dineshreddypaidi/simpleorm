@@ -32,7 +32,6 @@ cols = {
     "created_at" : DateTimeField(auto=True,null=True)
 }
 
-# assert db2.create_table("users",table) == sql_
 print("postgres :")
 
 print(db1.drop_table("users"))
