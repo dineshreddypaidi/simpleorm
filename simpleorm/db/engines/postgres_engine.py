@@ -1,5 +1,6 @@
 import psycopg2
 from simpleorm.db.base import BaseConnector
+from simpleorm.table import Table
 
 class PostgresConnector(BaseConnector):
     
@@ -20,10 +21,8 @@ class PostgresConnector(BaseConnector):
             WHERE table_schema = 'public' AND table_type = 'BASE TABLE'
         """
         cursor.execute(query)
-        tables = [row[0] for row in cursor.fetchall()]
-        
-        return tables
-    
+        return  [row[0] for row in cursor.fetchall()]
+
     def __sql_format_for_col(self,col : dict):
         parts =  [col["column_name"],col["sql_type"]]
         if not col.get("not_null"):
@@ -77,4 +76,10 @@ class PostgresConnector(BaseConnector):
             self.commit()
             return f"{table_name} values are deleted"
         except Exception as e:
-            raise RuntimeError(f"Failed to truncate table {table_name}: {e}")    
+            raise RuntimeError(f"Failed to truncate table {table_name}: {e}")
+        
+    def use_table(self,table_name):
+        if table_name in self.show_tables():
+            return Table(self.conn,table_name)
+        else:
+            raise ReferenceError(f"{table_name} table does not exist in {self.config["database"]} database")

@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+
 class BaseConnector(ABC):
     def __init__(self,config : dict):
         self.config = config
@@ -37,6 +38,6 @@ class BaseConnector(ABC):
     def truncate_table(self):
         pass
     
-    # @abstractmethod
-    # def use_table(self):
-    #     pass
+    @abstractmethod
+    def use_table(self):
+        pass

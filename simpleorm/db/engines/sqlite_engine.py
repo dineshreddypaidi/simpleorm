@@ -1,7 +1,7 @@
 import sqlite3
 from simpleorm.db.base import BaseConnector
-        
-  
+from simpleorm.table import Table        
+
 class SqliteConnector(BaseConnector):
     
     def get_connection(self):
@@ -72,3 +72,9 @@ class SqliteConnector(BaseConnector):
             return f"{table_name} values are deleted"
         except Exception as e:
             raise RuntimeError(f"Failed to truncate table {table_name}: {e}")
+        
+    def use_table(self,table_name):
+        if table_name in self.show_tables():
+            return Table(self.conn,table_name)
+        else:
+            raise ReferenceError(f"{table_name} table does not exist in {self.config["database"]} database")

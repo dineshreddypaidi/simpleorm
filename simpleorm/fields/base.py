@@ -13,10 +13,10 @@ class Field(ABC):
         self.auto_increment = auto_increment
         self.default = default
         
-        self._set_constraints()
-        self._validate_constraints()
+        self.__set_constraints()
+        self.__validate_constraints()
         
-    def _set_constraints(self):
+    def __set_constraints(self):
         if self.primary_key:
             self.auto_increment = True
             self.unique = True
@@ -27,7 +27,7 @@ class Field(ABC):
             self.unique = True
             self.null = False
     
-    def _validate_constraints(self):
+    def __validate_constraints(self):
         if self.auto_increment and not self.primary_key:
             raise ValueError("AUTOINCREMENT is only allowed with primary key fields")
         if self.primary_key and self.null:
@@ -54,10 +54,6 @@ class Field(ABC):
         if self.foreign_key and self.null:
             raise ValueError("Foreign key field cannot be nullable")
     
-    @abstractmethod
-    def validate(self):
-        pass
-
     def _validate_flags_for_type(self, allow_pk=False, allow_unique=False, allow_fk=False):
         if not allow_pk and (self.primary_key or self.auto_increment):
             raise ValueError(f"{self.sql_type} cannot be primary key or auto_increment")
@@ -65,6 +61,10 @@ class Field(ABC):
             raise ValueError(f"{self.sql_type} cannot be unique")
         if not allow_fk and self.foreign_key:
             raise ValueError(f"{self.sql_type} cannot be a foreign key")
+        
+    @abstractmethod
+    def validate(self):
+        pass
 
     def __str__(self):
         return f"{self.__class__.__name__}({self.sql_type})"
