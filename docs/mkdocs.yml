@@ -1,7 +1,6 @@
 site_name: simpleorm
 
-
-site_url: https://yourproject.readthedocs.io
+site_url: https://simpleorm.readthedocs.io/en/latest
 
 theme:
   name: material
@@ -13,8 +12,11 @@ theme:
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Usage: usage.md
+  - Usage: USAGE.md
 
+  - Roadmap: ROADMAP.md
+  - Contribute: CONTRIBUTING.md
+  - TODO: TODO.md
 
 markdown_extensions:
   - toc:
