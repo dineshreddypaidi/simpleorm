@@ -5,7 +5,7 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
 from simpleorm.db import Connector
 from simpleorm.config import *
-
+from simpleorm.table import Table
 
 postgres_config = load_json_config("../config/connection_postgres_config.json")
 
@@ -16,8 +16,7 @@ print("Postgres Tables:", db1.show_tables())
 
 user_table = db1.use_table(db1.show_tables()[0])
 
-print(user_table.get())
-
+print(user_table.get_all())
 
 quer_ = {
     "username" : "dinesh",
@@ -25,6 +24,15 @@ quer_ = {
     "password_hash" : "hfhgjhnhfcf"
 }
 
-user_table.post(quer_)
+print(user_table.post(quer_))
 
-print(user_table.get())
+
+print(user_table.get_all())
+
+print(user_table.update("dinesh",where="username",username="dineshreddy"))
+
+print(user_table.get_all())
+
+print(user_table.delete(username="dineshreddy"))
+
+print(user_table.get_all())
