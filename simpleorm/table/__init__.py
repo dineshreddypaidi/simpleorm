@@ -1,5 +1,5 @@
-from .table import Table
+from .src import Table
 
 __all__= [
-    "Table"
+    "Table",
     ]
