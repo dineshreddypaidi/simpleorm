@@ -12,10 +12,10 @@ theme:
 nav:
   - Home: index.md
   - Installation: installation.md
-  - Usage: USAGE.md
+  - Usage: usage.md
 
-  - Roadmap: ROADMAP.md
-  - Contribute: CONTRIBUTING.md
+  - Roadmap: roadmap.md
+  - Contribute: contributing.md
   - TODO: TODO.md
 
 markdown_extensions:

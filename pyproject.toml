@@ -13,6 +13,7 @@ license = {text = "MIT"}
 dependencies = [
     "mysql-connector-python",
     "psycopg2",
+    "pandas",
 ]
 
 [tool.setuptools.packages.find]

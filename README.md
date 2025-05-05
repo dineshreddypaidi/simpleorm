@@ -9,7 +9,6 @@
 
 [![Docs](https://img.shields.io/badge/docs-online-brightgreen.svg)](https://simpleorm.readthedocs.io)
 
-
 ## "simpleorm is a lightweight, engine-agnostic ORM designed for _Data scientists_ and _Engineers_. who work with existing databases and want simple, powerful SQL-like operations — without heavy frameworks."
 
 - ⚡ **Engine-Agnostic** (SQLite, PostgreSQL, MySQL, and more)
@@ -29,12 +28,14 @@
 
 or install from source:
 
-### git clone https://github.com/open-techie/simpleorm.git
+```bash
+    git clone https://github.com/open-techie/simpleorm.git
 
-### cd simpleorm
+    cd simpleorm
 
-### pip install .
+    pip install .
 
+```
 
 ---
 
@@ -42,8 +43,8 @@ or install from source:
 
 ### read the documentation [ here ] https://simpleorm.readthedocs.io
 
---- 
+---
 
-# ⭐️ If you find this project helpful, please give it a star on GitHub! ⭐️
+# ⭐️ If you find this project helpful, please give it a star and consider sharing ..!⭐️
 
 ---

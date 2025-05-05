@@ -1,1 +1,1 @@
-from simpleorm.db.connection import Connector
+from .connection import Connector

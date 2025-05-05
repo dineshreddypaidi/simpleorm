@@ -1,11 +1,11 @@
 import json
 from urllib.parse import urlparse
 
-def load_json_config(file_path):
+def load_json_config(file_path) -> dict:
     with open(file_path, "r") as f:
         return json.load(f)
     
-def load_from_url(db_url):
+def load_from_url(db_url) -> dict:
     config = {}
     
     parsed_url = urlparse(db_url)
