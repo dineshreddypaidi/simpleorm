@@ -1,0 +1,24 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "simpleorm"
+version = "0.1.0"
+description = "An ORM for existing databases and tables"
+
+authors = [{ name = "open-techie", email = "example.email@example.com" }]
+license = {text = "MIT"}
+
+dependencies = [
+    "mysql-connector-python",
+    "psycopg2",
+]
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[project.urls]
+homepage = "https://github.com/open-techie/simpleorm"
+repository = "https://github.com/open-techie/simpleorm"
+documentation = "https://simpleorm.readthedocs.io"
