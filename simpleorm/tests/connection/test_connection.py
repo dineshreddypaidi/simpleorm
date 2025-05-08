@@ -1,7 +1,3 @@
-import sys
-import os
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '../../..')))
-
 import pytest
 from simpleorm.db import Connector
 from simpleorm.config import load_json_config
@@ -9,12 +5,12 @@ from simpleorm.config import load_json_config
 
 @pytest.fixture
 def postgres_db():
-    postgres_config = load_json_config("config/connection_mysql_config.json")
+    postgres_config = load_json_config("./examples/config/connection_postgres_config.json")
     return Connector(postgres_config).connect()
 
 @pytest.fixture
 def mysql_db():
-    mysql_config = load_json_config("config/connection_mysql_config.json")
+    mysql_config = load_json_config("./examples/config/connection_mysql_config.json")
     return Connector(mysql_config).connect()
 
 def test_mysql_connection(mysql_db):
