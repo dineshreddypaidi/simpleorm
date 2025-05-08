@@ -1,9 +1,7 @@
 import pytest
+
 from simpleorm.fields.base import Field
-from simpleorm.fields import (
-    IntegerField, StringField, FloatField, TextField,
-    BooleanField, DateField, DateTimeField
-)
+from simpleorm.fields import *
 
 def test_integer_field_type():
     field = IntegerField()
@@ -38,3 +36,7 @@ def test_field_abstract_instantiation():
     with pytest.raises(TypeError):
         Field(int, "INTEGER")
 
+def test_to_sql():
+    sql = IntegerField(unique=True)
+    sql = sql.to_sql("id")
+    assert isinstance(sql,dict)

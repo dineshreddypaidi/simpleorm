@@ -1,16 +1,16 @@
-from simpleorm.db import Connector
-from simpleorm.config import load_json_config
+from simpleorm.db import connect_db
+from simpleorm.config import load_from_json
 from simpleorm.fields import *
 
-mysql_config = load_json_config("config/connection_mysql_config.json")
-postgres_config = load_json_config("config/connection_postgres_config.json")
+mysql_config = load_from_json("config/connection_mysql_config.json")
+postgres_config = load_from_json("config/connection_postgres_config.json")
 
 
-db1 = Connector(postgres_config).connect()
+db1 = connect_db(mysql_config)
 
-db2 = Connector(mysql_config).connect()
+db2 = connect_db(postgres_config)
 
-db3 = Connector({"engine":"sqlite"}).connect()
+db3 = connect_db({"engine" : "sqlite3"})
 
 sql_ = """CREATE TABLE IF NOT EXISTS users (
     id INTEGER NOT NULL PRIMARY KEY UNIQUE AUTO_INCREMENT,

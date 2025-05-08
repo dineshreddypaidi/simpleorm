@@ -1,11 +1,11 @@
-from simpleorm.db import Connector
+from simpleorm.db import connect_db
 from simpleorm.config import *
 
-mysql_config = load_json_config("config/connection_mysql_config.json")
-postgres_config = load_json_config("config/connection_postgres_config.json")
+mysql_config = load_from_json("config/connection_mysql_config.json")
+postgres_config = load_from_json("config/connection_postgres_config.json")
 
 
-db1 = Connector(postgres_config).connect()
+db1 = connect_db(mysql_config)
 
 tables = db1.show_tables()
 

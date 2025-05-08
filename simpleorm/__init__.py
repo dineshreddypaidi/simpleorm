@@ -1,16 +1,3 @@
+note = "test to all the sub packages are defined here.."
 
-
-
-
-
-
-
-
-
-
-
-
-
-__author__ = "dineshreddypaidi"
-
-__version__ = "1.0"
+__author__ = "open-techie"
