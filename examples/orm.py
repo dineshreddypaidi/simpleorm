@@ -15,20 +15,20 @@ user_table = db1.use_table(db1.show_tables()[0])
 
 print(user_table.get_all())
 
-quer_ = {
-    "username" : "dinesh",
-    "email" : "dineshreddy@gmaail.com",
-    "password_hash" : "hfhgjhnhfcf"
+post_values = {
+    "username" : ["vhkvkddinesh","hsgdasdvnchgm"],
+    "email" : ["dineshrevhgvddy@gmaail.com","anything@gmail.com"],
+    "password_hash" : ["hfhgjhnhfcf","hfhgjhnhfcf"]
 }
 
-print(user_table.post(quer_))
+print(user_table.post_many(post_values))
 
 
 print(user_table.get_all())
 
-print(user_table.update("dinesh",where="username",username="dineshreddy"))
+print(user_table.update(value="dinesh",where="username",username="dineshreddy"))
 
-print(user_table.get_all())
+print(user_table.get(where_col="username",value="dineshreddy"))
 
 print(user_table.delete(username="dineshreddy"))
 
